@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Rooms } from './rooms/rooms';
 
 @Component({
   selector: 'hinv-root',
@@ -10,9 +11,17 @@ import { Component } from '@angular/core';
 export class AppComponent {
   hotelName = 'Park Avenue';
   numberOfRooms = 10;
-  showNumRooms = false;
+  hideNumRooms = false;
+
+  rooms: Rooms = {
+    available: 10,
+    booked: 5,
+    total: 20,
+  };
 
   toggle() {
-    this.showNumRooms = !this.showNumRooms;
+    this.hideNumRooms = !this.hideNumRooms;
   }
 }
+
+// Structural Directives: change behavior of DOM: remove, add elements - more costly E.g. *ngIf, *ngFor, *ngSwitch
