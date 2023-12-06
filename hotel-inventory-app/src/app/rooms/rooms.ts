@@ -13,4 +13,5 @@ export interface Room {
   checkInTime?: Date;
   checkOutTime?: Date;
   available: boolean;
+  rating: number;
 }

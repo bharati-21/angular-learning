@@ -6,6 +6,8 @@
 </div>
 <button (click)="toggle()">{{hideNumRooms ? "Show" : "Hide"}} number of rooms</button>
 
+<!-- <div>{{roomList | json}}</div> -->
+
 <div *ngIf="rooms.available > 0">
     Room List
     <table>
@@ -18,16 +20,21 @@
             <th>Amenities</th>
             <th>Check In Time</th>
             <th>Check Out Time</th>
+            <th>Room Price</th>
+            <th>Rating</th>
         </tr>
+        <!-- <tr [ngClass]="e ? 'even' : 'odd'" *ngFor="let room of roomList | slice : 1:2; let e=even; let o=odd; let i=index"> -->
         <tr [ngClass]="e ? 'even' : 'odd'" *ngFor="let room of roomList; let e=even; let o=odd; let i=index">
             <td>{{i}}</td>
             <td>{{o ? "Odd": "Even"}}</td>
             <td>{{room.roomNo}}</td>
             <td>{{room.roomType}}</td>
             <td>{{room.available ? "Available" : "Not available"}}</td>
-            <td>{{room.amenities}}</td>
-            <td>{{room.checkInTime ? room.checkInTime : "N/A"}}</td>
-            <td>{{room.checkOutTime ? room.checkOutTime : "N/A"}}</td>
+            <td>{{room.amenities | titlecase }}</td>
+            <td>{{room.checkInTime ? (room.checkInTime | date :'medium') : "N/A"}}</td>
+            <td>{{room.checkOutTime ? (room.checkOutTime | date: 'medium') : "N/A"}}</td>
+            <td>{{room.price | currency: 'INR'}}</td>
+            <td>{{room.rating | number: '1.1-1'}}
         </tr>
     </table>
 </div>
