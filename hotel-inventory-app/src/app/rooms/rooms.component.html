@@ -1,5 +1,7 @@
 <div [hidden]="hideNumRooms">Number of rooms: 
-    <span [innerText]="numberOfRooms"></span>
+    <span [ngStyle]="{
+        color: 'red'
+    }" [innerText]="numberOfRooms"></span>
     <!-- Property binding: bind an HTML property to JS value -->
 </div>
 <button (click)="toggle()">{{hideNumRooms ? "Show" : "Hide"}} number of rooms</button>
