@@ -9,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   hotelName = 'Park Avenue';
+  numberOfRooms = 10;
+  showNumRooms = false;
+
+  toggle() {
+    this.showNumRooms = !this.showNumRooms;
+  }
 }
