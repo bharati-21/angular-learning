@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   hotelName = 'Park Avenue';
+  role = 'Users';
 }
 
 // Structural Directives: change behavior of DOM: remove, add elements - more costly E.g. *ngIf, *ngFor, *ngSwitch
