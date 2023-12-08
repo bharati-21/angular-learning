@@ -4,7 +4,9 @@ import {
   Component,
   ElementRef,
   OnInit,
+  QueryList,
   ViewChild,
+  ViewChildren,
   ViewContainerRef,
 } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
@@ -25,9 +27,13 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
   @ViewChild(HeaderComponent)
   headerComponent!: HeaderComponent;
+  @ViewChildren(HeaderComponent)
+  headerChildrenComponent!: QueryList<HeaderComponent>;
 
-  @ViewChild('user', { read: ViewContainerRef }) vcr!: ViewContainerRef;
-  @ViewChild('name', { static: true }) elementRef!: ElementRef;
+  @ViewChild('user', { read: ViewContainerRef })
+  vcr!: ViewContainerRef;
+  @ViewChild('name', { static: true })
+  elementRef!: ElementRef;
 
   ngOnInit(): void {
     this.elementRef.nativeElement.innerText = 'This is a test!';
@@ -37,6 +43,10 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
     this.headerComponent.title = 'Rooms View';
     const componentRef = this.vcr.createComponent(RoomsComponent);
     componentRef.instance.numberOfRooms = 100;
+
+    this.headerChildrenComponent.forEach((child, index) => {
+      child.title = `${index}`;
+    });
   }
 
   ngAfterViewChecked(): void {}
