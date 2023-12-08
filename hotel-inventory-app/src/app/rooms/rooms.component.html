@@ -8,33 +8,14 @@
 
 <!-- <div>{{roomList | json}}</div> -->
 
+<div *ngIf="selectedRoom">
+    {{selectedRoom | json}}
+</div>
+
+<div>
+    <button (click)="addRoom()">Add Room</button>
+</div>
+
 <div *ngIf="rooms.available > 0">
-    Room List
-    <table>
-        <tr>
-            <th>Sl. No.</th>
-            <th>Odd/Even</th>
-            <th>Room No.</th>
-            <th>Room Type</th>
-            <th>Status</th>
-            <th>Amenities</th>
-            <th>Check In Time</th>
-            <th>Check Out Time</th>
-            <th>Room Price</th>
-            <th>Rating</th>
-        </tr>
-        <!-- <tr [ngClass]="e ? 'even' : 'odd'" *ngFor="let room of roomList | slice : 1:2; let e=even; let o=odd; let i=index"> -->
-        <tr [ngClass]="e ? 'even' : 'odd'" *ngFor="let room of roomList; let e=even; let o=odd; let i=index">
-            <td>{{i}}</td>
-            <td>{{o ? "Odd": "Even"}}</td>
-            <td>{{room.roomNo}}</td>
-            <td>{{room.roomType}}</td>
-            <td>{{room.available ? "Available" : "Not available"}}</td>
-            <td>{{room.amenities | titlecase }}</td>
-            <td>{{room.checkInTime ? (room.checkInTime | date :'medium') : "N/A"}}</td>
-            <td>{{room.checkOutTime ? (room.checkOutTime | date: 'medium') : "N/A"}}</td>
-            <td>{{room.price | currency: 'INR'}}</td>
-            <td>{{room.rating | number: '1.1-1'}}
-        </tr>
-    </table>
+    <hinv-rooms-list [rooms]="roomList" (selectedRoom)="selectRoom($event)" [title]="title"></hinv-rooms-list>
 </div>

@@ -1,0 +1,32 @@
+<h2>{{title}}</h2>
+<table>
+    <tr>
+        <th>Sl. No.</th>
+        <th>Odd/Even</th>
+        <th>Room No.</th>
+        <th>Room Type</th>
+        <th>Status</th>
+        <th>Amenities</th>
+        <th>Check In Time</th>
+        <th>Check Out Time</th>
+        <th>Room Price</th>
+        <th>Rating</th>
+        <th>Book Room</th>
+    </tr>
+    <!-- <tr [ngClass]="e ? 'even' : 'odd'" *ngFor="let room of roomList | slice : 1:2; let e=even; let o=odd; let i=index"> -->
+    <tr [ngClass]="e ? 'even' : 'odd'" *ngFor="let room of rooms; let e=even; let o=odd; let i=index">
+        <td>{{i}}</td>
+        <td>{{o ? "Odd": "Even"}}</td>
+        <td>{{room.roomNo}}</td>
+        <td>{{room.roomType}}</td>
+        <td>{{room.available ? "Available" : "Not available"}}</td>
+        <td>{{room.amenities | titlecase }}</td>
+        <td>{{room.checkInTime ? (room.checkInTime | date :'medium') : "N/A"}}</td>
+        <td>{{room.checkOutTime ? (room.checkOutTime | date: 'medium') : "N/A"}}</td>
+        <td>{{room.price | currency: 'INR'}}</td>
+        <td>{{room.rating | number: '1.1-1'}}</td>
+        <td>
+            <button class="btn btn-primary" *ngIf="room.available" (click)="selectRoom(room)">Book room</button>
+        </td>
+    </tr>
+</table>
