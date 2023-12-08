@@ -5,9 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RoomsComponent } from './rooms/rooms.component';
 import { RoomsListComponent } from './rooms-list/rooms-list.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
-  declarations: [AppComponent, RoomsComponent, RoomsListComponent],
+  declarations: [AppComponent, RoomsComponent, RoomsListComponent, HeaderComponent],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],

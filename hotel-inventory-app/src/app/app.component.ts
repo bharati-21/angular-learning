@@ -1,4 +1,14 @@
-import { Component } from '@angular/core';
+import {
+  AfterViewChecked,
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
+import { HeaderComponent } from './header/header.component';
+import { RoomsComponent } from './rooms/rooms.component';
 
 @Component({
   selector: 'hinv-root',
@@ -7,9 +17,29 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss',
   // styles: ['h1 { color: blueviolet; font-family: sans-serif }'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
   hotelName = 'Park Avenue';
   role = 'Users';
+
+  constructor() {}
+
+  @ViewChild(HeaderComponent)
+  headerComponent!: HeaderComponent;
+
+  @ViewChild('user', { read: ViewContainerRef }) vcr!: ViewContainerRef;
+  @ViewChild('name', { static: true }) elementRef!: ElementRef;
+
+  ngOnInit(): void {
+    this.elementRef.nativeElement.innerText = 'This is a test!';
+  }
+
+  ngAfterViewInit(): void {
+    this.headerComponent.title = 'Rooms View';
+    const componentRef = this.vcr.createComponent(RoomsComponent);
+    componentRef.instance.numberOfRooms = 100;
+  }
+
+  ngAfterViewChecked(): void {}
 }
 
 // Structural Directives: change behavior of DOM: remove, add elements - more costly E.g. *ngIf, *ngFor, *ngSwitch
