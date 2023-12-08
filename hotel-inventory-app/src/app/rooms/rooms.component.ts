@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, DoCheck, OnInit, ViewEncapsulation } from '@angular/core';
 import { Room, Rooms } from './rooms';
 
 @Component({
@@ -7,7 +7,7 @@ import { Room, Rooms } from './rooms';
   styleUrl: './rooms.component.scss',
   // encapsulation: ViewEncapsulation.None,
 })
-export class RoomsComponent implements OnInit {
+export class RoomsComponent implements OnInit, DoCheck {
   numberOfRooms = 10;
   hideNumRooms = false;
   selectedRoom!: Room;
@@ -23,7 +23,7 @@ export class RoomsComponent implements OnInit {
 
   toggle() {
     this.hideNumRooms = !this.hideNumRooms;
-    this.title = 'Rooms List';
+    // this.title = 'Rooms List';
   }
 
   ngOnInit(): void {
@@ -64,6 +64,10 @@ export class RoomsComponent implements OnInit {
         rating: 4.3,
       },
     ];
+  }
+
+  ngDoCheck(): void {
+    console.log('on changes is called');
   }
 
   selectRoom(room: Room) {
