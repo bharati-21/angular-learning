@@ -1,4 +1,10 @@
-import { Component, DoCheck, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  DoCheck,
+  OnDestroy,
+  OnInit,
+  ViewEncapsulation,
+} from '@angular/core';
 import { Room, Rooms } from './rooms';
 
 @Component({
@@ -9,7 +15,7 @@ import { Room, Rooms } from './rooms';
 })
 export class RoomsComponent implements OnInit, DoCheck {
   numberOfRooms = 10;
-  hideNumRooms = false;
+  hideRoomsInfo = false;
   selectedRoom!: Room;
   title = 'Room List';
 
@@ -22,7 +28,7 @@ export class RoomsComponent implements OnInit, DoCheck {
   roomList: Room[] = [];
 
   toggle() {
-    this.hideNumRooms = !this.hideNumRooms;
+    this.hideRoomsInfo = !this.hideRoomsInfo;
     // this.title = 'Rooms List';
   }
 

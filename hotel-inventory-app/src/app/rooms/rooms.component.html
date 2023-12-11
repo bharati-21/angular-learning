@@ -1,21 +1,20 @@
-<div [hidden]="hideNumRooms">Number of rooms: 
+<div [hidden]="hideRoomsInfo">Number of rooms: 
     <span [ngStyle]="{
         color: 'red'
     }" [innerText]="numberOfRooms"></span>
     <!-- Property binding: bind an HTML property to JS value -->
 </div>
-<button (click)="toggle()">{{hideNumRooms ? "Show" : "Hide"}} number of rooms</button>
 
 <!-- <div>{{roomList | json}}</div> -->
-
 <div *ngIf="selectedRoom">
     {{selectedRoom | json}}
 </div>
 
-<div>
-    <button (click)="addRoom()">Add Room</button>
+<div *ngIf="!hideRoomsInfo && rooms.available > 0">
+    <hinv-rooms-list [rooms]="roomList" (selectedRoom)="selectRoom($event)" [title]="title"></hinv-rooms-list>
 </div>
 
-<div *ngIf="rooms.available > 0">
-    <hinv-rooms-list [rooms]="roomList" (selectedRoom)="selectRoom($event)" [title]="title"></hinv-rooms-list>
+<button (click)="toggle()">{{hideRoomsInfo ? "Show" : "Hide"}} Rooms Info</button>
+<div>
+    <button (click)="addRoom()">Add Room</button>
 </div>
