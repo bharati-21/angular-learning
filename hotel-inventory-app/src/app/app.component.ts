@@ -4,12 +4,14 @@ import {
   Component,
   ElementRef,
   OnInit,
+  Optional,
   QueryList,
   ViewChild,
   ViewChildren,
   ViewContainerRef,
 } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
+import { LoggerService } from './logger.service';
 import { RoomsComponent } from './rooms/rooms.component';
 
 @Component({
@@ -23,7 +25,7 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
   hotelName = 'Park Avenue';
   role = 'Users';
 
-  constructor() {}
+  constructor(@Optional() private loggerService: LoggerService) {}
 
   @ViewChild(HeaderComponent)
   headerComponent!: HeaderComponent;
@@ -36,6 +38,7 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
   elementRef!: ElementRef;
 
   ngOnInit(): void {
+    this.loggerService?.Log('AppComponent.ngOnInit()');
     this.elementRef.nativeElement.innerText = 'This is a test!';
   }
 

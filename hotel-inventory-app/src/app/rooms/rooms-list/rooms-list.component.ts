@@ -9,7 +9,7 @@ import {
   SimpleChanges,
   OnDestroy,
 } from '@angular/core';
-import { Room } from '../rooms/rooms';
+import { Room } from '../rooms';
 
 @Component({
   selector: 'hinv-rooms-list',
