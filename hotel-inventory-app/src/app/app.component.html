@@ -1,8 +1,8 @@
 <!-- <h1>Welcome to {{hotelName}}</h1> -->
 <hinv-header></hinv-header>
+<!-- <hinv-header></hinv-header>
 <hinv-header></hinv-header>
-<hinv-header></hinv-header>
-<hinv-header></hinv-header>
+<hinv-header></hinv-header> -->
 <!-- <hinv-rooms></hinv-rooms> -->
 
 <!-- <div [ngSwitch]="role">
@@ -18,8 +18,15 @@
     </div>
 </div> -->
 
-<div>
+<!-- <div>
     <ng-template #user></ng-template>
-</div>
+</div> -->
 
-<div #name></div>
+<!-- <div #name></div> -->
+
+<hinv-container>
+    <hinv-rooms></hinv-rooms>
+    <hinv-employee></hinv-employee>
+    <!-- Content within these tags override the content within hinv-container -->
+    <h1>This is from ng-content</h1>
+</hinv-container>
