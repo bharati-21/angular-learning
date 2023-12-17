@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+import { shareReplay } from 'rxjs';
 import { AppConfig } from '../../AppConfig/appconfig.interface';
 import { APP_SERVICE_CONFIG } from '../../AppConfig/appconfig.service';
 import { Room } from '../rooms';
@@ -16,6 +17,10 @@ export class RoomsService {
     console.log(this.config.apiEndpoint);
     console.log('Rooms service initialised...');
   }
+
+  getRooms$ = this.httpClient
+    .get<Room[]>('https://tender-cloak-toad.cyclic.app/api/rooms')
+    .pipe(shareReplay(1));
 
   getRooms() {
     return this.httpClient.get<Room[]>(
@@ -41,5 +46,17 @@ export class RoomsService {
     return this.httpClient.delete<Room[]>(
       `https://tender-cloak-toad.cyclic.app/api/rooms/${id}`,
     );
+  }
+
+  getPhotos() {
+    const request = new HttpRequest(
+      'GET',
+      'https://jsonplaceholder.typicode.com/photos',
+      {
+        reportProgress: true,
+      },
+    );
+
+    return this.httpClient.request(request);
   }
 }

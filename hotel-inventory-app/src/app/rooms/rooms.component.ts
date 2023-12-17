@@ -1,3 +1,4 @@
+import { HttpEventType } from '@angular/common/http';
 import {
   Component,
   DoCheck,
@@ -29,6 +30,8 @@ export class RoomsComponent implements OnInit, DoCheck {
 
   roomList: Room[] = [];
 
+  totalBytes: number = 0;
+
   stream = new Observable((observer) => {
     observer.next('user1'); // next emits new data
     // subscriber will get the new data
@@ -38,7 +41,8 @@ export class RoomsComponent implements OnInit, DoCheck {
   });
 
   // Tells Angular to skip this component for dependency resolution
-  constructor(@SkipSelf() private roomsService: RoomsService) {}
+  // constructor(@SkipSelf() private roomsService: RoomsService) {}
+  constructor(private roomsService: RoomsService) {}
 
   toggle() {
     this.hideRoomsInfo = !this.hideRoomsInfo;
@@ -52,8 +56,27 @@ export class RoomsComponent implements OnInit, DoCheck {
       error: (err) => console.log(err),
     });
     this.stream.subscribe(console.log);
-    this.roomsService.getRooms().subscribe((rooms) => {
+    this.roomsService.getRooms$.subscribe((rooms) => {
       this.roomList = rooms;
+    });
+    this.roomsService.getPhotos().subscribe((event) => {
+      switch (event.type) {
+        case HttpEventType.Sent: {
+          console.log('Request sent...');
+          break;
+        }
+        case HttpEventType.ResponseHeader: {
+          console.log('Request success...');
+          break;
+        }
+        case HttpEventType.DownloadProgress: {
+          this.totalBytes += event.loaded;
+          break;
+        }
+        case HttpEventType.Response: {
+          console.log(event.body);
+        }
+      }
     });
   }
 

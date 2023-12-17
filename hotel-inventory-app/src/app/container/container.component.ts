@@ -6,7 +6,7 @@ import { RoomsService } from '../rooms/services/rooms.service';
   selector: 'hinv-container',
   templateUrl: './container.component.html',
   styleUrl: './container.component.scss',
-  providers: [RoomsService],
+  // providers: [RoomsService],
 })
 export class ContainerComponent implements AfterContentInit {
   @ContentChild(EmployeeComponent) employeeContent!: EmployeeComponent;
@@ -15,5 +15,6 @@ export class ContainerComponent implements AfterContentInit {
     this.employeeContent.empName = 'Test';
   }
 
-  constructor(@Host() private roomsService: RoomsService) {}
+  // constructor(@Host() private roomsService: RoomsService) {}
+  constructor(private roomsService: RoomsService) {}
 }
