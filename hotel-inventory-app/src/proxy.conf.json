@@ -1,0 +1,6 @@
+{
+  "/api": {
+    "target": "https://tender-cloak-toad.cyclic.app",
+    "secure": true
+  }
+}

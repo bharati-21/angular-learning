@@ -10,11 +10,14 @@
     {{selectedRoom | json}}
 </div>
 
+<div>
+    <button (click)="addRoom()">Add Room</button>
+</div>
+
 <div *ngIf="!hideRoomsInfo && rooms.available > 0">
     <hinv-rooms-list [rooms]="roomList" (selectedRoom)="selectRoom($event)" [title]="title"></hinv-rooms-list>
 </div>
 
 <button (click)="toggle()">{{hideRoomsInfo ? "Show" : "Hide"}} Rooms Info</button>
-<div>
-    <button (click)="addRoom()">Add Room</button>
-</div>
+<button (click)="editRoom()">Edit Room</button>
+<button (click)="deleteRoom()">Delete Room</button>
